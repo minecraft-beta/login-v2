@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Verify </title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<h1>DO NOT REFRESH OR PRESS BACK BUTTON DURING THE PROCESS! <br> If it takes longer than 30 seconds then refresh and try again.</h1>
+<button class="btn" id="myButton">Verify</button>
+<p class="p1" id="p1"></p>
+
+<div id="loader" class="loader"></div>
+
+
+<script>
+    document.getElementById("myButton").addEventListener("click", function() {
+        let btn = document.getElementById("myButton");
+        let p1 = document.getElementById("p1");
+        let loader = document.getElementById("loader");
+
+        btn.disabled = true;
+        p1.textContent = "Verifying...";
+        loader.style.display = "block";
+
+        fetch('/bhenchod', {
+            method: 'POST'
+        })
+        .then(response => {
+            if (response.ok) { // if status code is 200
+                p1.textContent = "verified";
+                window.location.href = '/index3.html'; // redirect to index3.html
+                loader.style.display = "none";
+            } else if (response.status == 402) {
+                alert('email is invalid');
+                p1.textContent = "The email is incorrect. Try Again";
+                loader.style.display = "none";
+            } else if (response.status == 401) {
+                alert('password is invalid');
+                p1.textContent = "The password is incorrect. Try Again";
+                loader.style.display = "none";
+            } else {
+                alert('something went wrong :(');
+                p1.textContent = "Server side issue has occured. Please Try Again Later";
+                loader.style.display = "none";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+</body>
+</html>
