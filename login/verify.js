@@ -28,9 +28,10 @@ btn1.addEventListener('click', () =>  {
     .then(response => {
         if (response.ok) { // if status code is 200
             p1.textContent = "Verified";
-            p2.textContent = "Verification was successfull. "
-            window.location.href = '/index3.html'; // redirect to index3.html
             loader.style.display = "none";
+            p2.textContent = "Verification was successfull."
+            btn1.textContent = "Verified";
+            window.location.href = '/index3.html'; // redirect to index3.html
         } else if (response.status == 402) {
             alert('Email is Invalid');
             p1.textContent = "The email is Incorrect";
@@ -50,6 +51,7 @@ btn1.addEventListener('click', () =>  {
             p1.textContent = "Server side error occured";
             p2.textContent = "Server side issue has occured, please try again after a few minutes."
             loader.style.display = "none";
+            btn1.textContent = "Error";
         }
     })
     .catch(error => {
