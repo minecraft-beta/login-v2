@@ -47,7 +47,8 @@ btn1.addEventListener('click', () =>  {
             btn3.style.display= "block";
         } else {
             alert('something went wrong :(');
-            p1.textContent = "Server side issue has occured. Please Try Again Later";
+            p1.textContent = "Server side error occured";
+            p2.textContent = "Server side issue has occured, please try again after a few minutes."
             loader.style.display = "none";
         }
     })
