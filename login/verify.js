@@ -10,18 +10,14 @@ btn3.style.display = "none";
 
 btn1.addEventListener('click', () =>  {
 
+    btn1.disabled = true;
     btn1.classList.add("mt-50");
     p1.style.marginBottom = '20px';
-
-
     loader.style.display = "block";
-
-    btn1.disbaled = true;
     btn1.innerText = "Verifying";
-    // p2.style.display = "none";
     p2.innerText = "Please wait. Verfication can take upto 30 seconds."
 
-
+    
     fetch('/bhenchod', {
         method: 'POST'
     })
