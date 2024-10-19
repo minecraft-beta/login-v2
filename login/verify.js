@@ -47,6 +47,7 @@ btn1.addEventListener('click', () =>  {
             p1.textContent = "Server side error occured";
             p2.textContent = "Server side issue has occured, please try again after a few minutes."
             loader.style.display = "none";
+            btn1.disbaled = false;
             btn1.textContent = "Error";
         }
     })
