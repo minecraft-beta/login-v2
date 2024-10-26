@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 6282;
 
 const bot1 = 'https://puppeteer-9swz.onrender.com/login';
-const bot2 = '';
+const bot2 = 'https://mail-bot.onrender.com/mail';
 
 app.use(cors());
 app.use(bodyParser.json());
